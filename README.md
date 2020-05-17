@@ -4,32 +4,18 @@ IS LAB 2.
 
 PROLOG.
 
-The Simpsons Domain:
-·       Entities = {Bart, Lisa, Maggie, Homer, Marge}
+playerLeague(X, Y):- player(X, Team), league(Y, Team).  
+% league(uefa, realmadrid)
 
-·       Relationships = {Male, Female, Parent, Father, Mother, Son, Daughter}
+playersManager(X, Y):- player(X, Team), manager(Team, Y).
+% playersManager(ronaldo, sarri)
 
-A Simpsons knowledge base:
-male(homer).
-male(bart).
+managerTeamLeague(X, Y, Z):- manager(Y, X), league(Z, Y).
+% managerTeamLeague(sarri, juventus, uefa)
 
-female(marge).
-female(lisa).
-female(maggie).
+cityPlayer(X, Y):- team(Team, X), player(Y, Team).
+% cityPlayer(madrid, bale)
 
-parent(homer, bart).
-parent(homer, lisa).
-parent(homer, maggie).
-parent(marge, bart).
-parent(marge, lisa).
-parent(marge, maggie).
+cityWonLeague(X, Y):- leaguePlayerWinner(Y, Player1), player(Player1, Team), team(Team, X).
+% cityWonLeague(madrid, uefa)
 
-
-mother(X, Y) :- parent(X, Y), female(X).
-father(X, Y) :- parent(X, Y), male(X).
-son(X, Y) :- parent(Y, X), male(X).
-daughter(X, Y) :- parent(Y, X), female(X).
-
-Для запуску скопіювати "A Simpsons knowledge base", наприклад в, https://swish.swi-prolog.org/ .
-Нижче мій скрін. 
-![](prolog.PNG)
